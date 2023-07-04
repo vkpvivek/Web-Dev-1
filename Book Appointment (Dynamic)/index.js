@@ -23,7 +23,14 @@ function onSubmit(e) {
             email:emailInput.value
         };
         
-        localStorage.setItem(myObj.email,JSON.stringify(myObj));
+        axios.post("https://crudcrud.com/api/a92944b9713c48b9b8d14a158f6d8655/NEWDATA",myObj)
+            .then((response)=>{
+                console.log(response);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        //localStorage.setItem(myObj.email,JSON.stringify(myObj));
         showUser(myObj);
        
     }  
