@@ -80,7 +80,15 @@ function showUser(obj){
     deleteBtn.appendChild(document.createTextNode('delete'));
 
     deleteBtn.onclick=()=>{
-        localStorage.removeItem(obj.email);
+        //localStorage.removeItem(obj.email);
+        axios.delete(`https://crudcrud.com/api/f20747262a5a4658bd5599c46434c94f/NEWDATA/${obj._id}`)
+            .then(response => {
+                console.log(`Deleted post with ID ${obj._id}`);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+            
         parElem.removeChild(childElem);
     }
     childElem.appendChild(deleteBtn);    //add delete button Li
