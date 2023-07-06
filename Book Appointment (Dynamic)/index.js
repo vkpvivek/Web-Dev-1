@@ -103,12 +103,30 @@ function showUser(obj){
     
     editBtn.onclick =()=>{
         //delete old details
-        localStorage.removeItem(obj.email);
+        // localStorage.removeItem(obj.email);
+        axios.delete(`https://crudcrud.com/api/f20747262a5a4658bd5599c46434c94f/NEWDATA/${obj._id}`)
+            .then(response => {
+                console.log(`Deleted post with ID ${obj._id}`);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+            
         parElem.removeChild(childElem);
 
-        //add new details in input to edit
         document.getElementById("name").value = obj.name;
         document.getElementById("email").value = obj.email;
+
+        // axios.patch(`https://crudcrud.com/api/f20747262a5a4658bd5599c46434c94f/NEWDATA/${obj._id}`, {
+        //     name: obj.name,
+        //     email: obj.email
+        //     })
+        //     .then(response => console.log(response.data))
+        //     .catch(error => console.error(error));
+
+        //add new details in input to edit
+        // document.getElementById("name").value = obj.name;
+        // document.getElementById("email").value = obj.email;
     }
     childElem.appendChild(editBtn);     //add edit button to child
 
